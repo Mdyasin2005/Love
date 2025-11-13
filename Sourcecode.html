@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Proposal by Yasin</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #f093fb, #f5576c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/featured/?romance,flowers') no-repeat center center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            position: relative;
+            transition: all 0.5s ease;
+            border: 5px solid #e91e63;
+        }
+        h1 {
+            color: #e91e63;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        input {
+            padding: 15px;
+            font-size: 1.2em;
+            border: 3px solid #e91e63;
+            border-radius: 15px;
+            width: 80%;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus {
+            border-color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+        }
+        button {
+            padding: 18px 35px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .submit {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+        }
+        .submit:hover {
+            background: linear-gradient(45deg, #45a049, #5cb85c);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .yes {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+        }
+        .yes:hover {
+            background: linear-gradient(45deg, #45a049, #5cb85c);
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .no {
+            background: linear-gradient(45deg, #f44336, #e57373);
+            color: white;
+        }
+        .no:hover {
+            background: linear-gradient(45deg, #d32f2f, #ef5350);
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .hearts {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #e91e63;
+            font-size: 3em;
+            animation: float 3s infinite ease-in-out, pulse 2s infinite;
+        }
+        .flowers {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .flower {
+            position: absolute;
+            font-size: 2em;
+            animation: sway 4s infinite ease-in-out, grow 3s infinite;
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff4081;
+            animation: fall 5s infinite linear;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        @keyframes grow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .hidden {
+            display: none;
+        }
+        .celebration {
+            font-size: 2.5em;
+            color: #4caf50;
+            animation: bounce 1s infinite, rainbow 2s infinite;
+            font-weight: bold;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+        @keyframes rainbow {
+            0% { color: #4caf50; }
+            25% { color: #ff9800; }
+            50% { color: #e91e63; }
+            75% { color: #9c27b0; }
+            100% { color: #4caf50; }
+        }
+        .quote {
+            font-style: italic;
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        .proposer {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+        audio {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts">
+            <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+            <div class="heart" style="left: 30%; animation-delay: 1s;">💖</div>
+            <div class="heart" style="left: 50%; animation-delay: 2s;">💕</div>
+            <div class="heart" style="left: 70%; animation-delay: 0.5s;">💗</div>
+            <div class="heart" style="left: 90%; animation-delay: 1.5s;">💓</div>
+        </div>
+        <div class="flowers">
+            <div class="flower" style="left: 5%; top: 10%; animation-delay: 0s;">🌸</div>
+            <div class="flower" style="left: 25%; top: 20%; animation-delay: 1s;">🌹</div>
+            <div class="flower" style="left: 45%; top: 15%; animation-delay: 2s;">🌷</div>
+            <div class="flower" style="left: 65%; top: 25%; animation-delay: 0.5s;">🌺</div>
+            <div class="flower" style="left: 85%; top: 5%; animation-delay: 1.5s;">🌻</div>
+        </div>
+        <div class="confetti">
+            <div class="confetti-piece" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="confetti-piece" style="left: 20%; animation-delay: 0.5s;"></div>
+            <div class="confetti-piece" style="left: 30%; animation-delay: 1s;"></div>
+            <div class="confetti-piece" style="left: 40%; animation-delay: 1.5s;"></div>
+            <div class="confetti-piece" style="left: 50%; animation-delay: 2s;"></div>
+            <div class="confetti-piece" style="left: 60%; animation-delay: 2.5s;"></div>
+            <div class="confetti-piece" style="left: 70%; animation-delay: 3s;"></div>
+            <div class="confetti-piece" style="left: 80%; animation-delay: 3.5s;"></div>
+            <div class="confetti-piece" style="left: 90%; animation-delay: 4s;"></div>
+        </div>
+        
+        <!-- Name Input Page -->
+        <div id="nameInput">
+            <h1>A Special Proposal</h1>
+            <p>What's your name, beautiful?</p>
+            <input type="text" id="name" placeholder="Enter your name">
+            <button class="submit" onclick="showQuote()">Let's Begin</button>
+            <p class="proposer">From Yasin with love ❤️</p>
+        </div>
+        
+        <!-- Quote Page -->
+        <div id="quotePage" class="hidden">
+            <h1 id="greeting">Hello, [Name]!</h1>
+            <p class="quote" id="loveQuote">Loading a sweet quote...</p>
+            <button class="submit" onclick="startProposal()">Continue to Proposal</button>
+            <p class="proposer">Yasin is waiting for your answer!</p>
+        </div>
+        
+        <!-- Proposal Questions -->
+        <div id="question1" class="hidden">
+            <h1 id="q1Title">Will you be my girlfriend, [Name]?</h1>
+            <p>Take a chance on love with Yasin!</p>
+            <div class="buttons">
+                <button class="yes" onclick="nextQuestion(2)">Yes</button>
+                <button class="no" onclick="nextQuestion(2)">No</button>
+            </div>
+        </div>
+        <div id="question2" class="hidden">
+            <h1 id="q2Title">Will you marry me, [Name]?</h1>
+            <p>Let's make it official with Yasin!</p>
+            <div class="buttons">
+                <button class="yes" onclick="nextQuestion(3)">Yes</button>
+                <button class="no" onclick="nextQuestion(3)">No</button>
+            </div>
+        </div>
+        <div id="question3" class="hidden">
+            <h1 id="q3Title">Are you sure you want to say no, [Name]?</h1>
+            <p>Think about it one more time... Yasin believes in us!</p>
+            <div class="buttons">
+                <button class="yes" onclick="nextQuestion(4)">Yes</button>
+                <button class="no" onclick="nextQuestion(4)">No</button>
+            </div>
+        </div>
+        <div id="question4" class="hidden">
+            <h1 id="q4Title">Final chance: Will you say yes, [Name]?</h1>
+            <p>This is your last opportunity with Yasin!</p>
+            <div class="buttons">
+                <button class="yes" onclick="celebrate()">Yes</button>
+                <button class="no" id="noButton" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+            </div>
+        </div>
+        
+        <!-- Celebration -->
+        <div id="celebration" class="hidden">
+            <h1 class="celebration">Yay! You said yes, [Name]! 🎉❤️</h1>
+            <p>Yasin is the luckiest person alive!</p>
+            <audio controls>
+                <source src="C:\Users\Md Yasin Mondal\Downloads\Audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p>Listen to a special message from Yasin!</p>
+        </div>
+    </div>
+
+    <script>
+        let userName = '';
+
+        function showQuote() {
+            userName = document.getElementById('name').value.trim();
+            if (userName === '') {
+                alert('Please enter your name!');
+                return;
+            }
+            document.getElementById('nameInput').classList.add('hidden');
+            document.getElementById('quotePage').classList.remove('hidden');
+            document.getElementById('greeting').innerText = `Hello, ${userName}!`;
+            
+            // Random love quotes
+            const quotes = [
+                `"Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day."`,
+                `"You are my sunshine, my only sunshine. You make me happy when skies are gray."`,
+                `"In your eyes, I found my paradise."`,
+                `"Every love story is beautiful, but ours is my favorite."`,
+                `"You stole my heart, but I'll let you keep it."`
+            ];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('loveQuote').innerText = randomQuote;
+        }
+
+        function startProposal() {
+            document.getElementById('quotePage').classList.add('hidden');
+            document.getElementById('question1').classList.remove('hidden');
+            // Personalize questions
+            document.getElementById('q1Title').innerText = `Will you be my girlfriend, ${userName}?`;
+            document.getElementById('q2Title').innerText = `Will you marry me, ${userName}?`;
+            document.getElementById('q3Title').innerText = `Are you sure you want to say no, ${userName}?`;
+            document.getElementById('q4Title').innerText = `Final chance: Will you say yes, ${userName}?`;
+        }
+
+        function nextQuestion(num) {
+            // Hide all questions
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('question' + i).classList.add('hidden');
+            }
+            // Show the next question
+            document.getElementById('question' + num).classList.remove('hidden');
+        }
+
+        function celebrate() {
+            // Hide all questions
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('question' + i).classList.add('hidden');
+            }
+            // Show celebration
+            document.getElementById('celebration').classList.remove('hidden');
+            document.querySelector('#celebration h1').innerText = `Yay! You said yes, ${userName}! 🎉❤️`;
+        }
+
+        function moveNoButton() {
+            const button = document.getElementById('noButton');
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+
+            // Random position within the container
+            const newLeft = Math.random() * (containerRect.width - buttonRect.width);
+            const newTop = Math.random() * (containerRect.height - buttonRect.height);
+
+            button.style.position = 'absolute';
+            button.style.left = newLeft + 'px';
+            button.style.top = newTop + 'px';
+        }
+    </script>
+</body>
+</html>
